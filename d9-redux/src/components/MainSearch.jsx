@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, button, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Job from "./Job";
 
@@ -35,7 +35,7 @@ const MainSearch = () => {
         <Col xs={10} className="mx-auto my-3">
           <h1>Remote Jobs Search</h1>
           <Link to="/favourites">
-            <h2>Favorites</h2>
+            <Button variant="primary">Favorites</Button>{" "}
           </Link>
         </Col>
         <Col xs={10} className="mx-auto">
