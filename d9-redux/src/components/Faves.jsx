@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Faves = () => {
-  const favourites = useSelector((state) => state.favourites.list);
+  const favourites = useSelector((state) => state.favourites.favourites.list);
   const dispatch = useDispatch();
   return (
     <Container className="flex-column align-items-center text-center">
