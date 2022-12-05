@@ -1,6 +1,7 @@
 import { Col, Row, Button, Container } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Faves = () => {
   const favourites = useSelector((state) => state.favourites.list);
@@ -27,6 +28,9 @@ const Faves = () => {
               </li>
             ))}
           </ul>
+          <Link to="/">
+            <Button>Take me back</Button>
+          </Link>
         </Col>
       </Row>
     </Container>

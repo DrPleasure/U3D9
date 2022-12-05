@@ -1,13 +1,23 @@
-import { useState } from "react";
-import { Container, Row, Col, Form, button, Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Job from "./Job";
+import { getJobsAction } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
   const [jobs, setJobs] = useState([]);
 
-  const baseEndpoint = "https://strive-jobs-api.herokuapp.com/jobs?search=";
+  const dispatch = useDispatch();
+  const jobsFromRedux = useSelector((state) => state.favourites.list);
+
+  useEffect(() => {
+    dispatch(getJobsAction());
+  }, []);
+
+  const baseEndpoint =
+    "https://strive-benchmark.herokuapp.com/api/jobs?search=developer&limit=20";
 
   const handleChange = (e) => {
     setQuery(e.target.value);
