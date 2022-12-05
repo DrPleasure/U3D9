@@ -13,7 +13,8 @@ const Faves = () => {
           <ul style={{ listStyle: "none" }}>
             {favourites.map((job, i) => (
               <li key={i} className="my-4">
-                {job}
+                <Link to={`/${job.company_name}`}>{job.company_name}</Link>
+                <p>{job.title}</p>
                 <Button
                   variant="danger"
                   onClick={() => {

@@ -2,7 +2,7 @@ import { GET_JOBS } from "../actions";
 
 const initialState = {
   // we're already in the "book" slice of the Redux store
-  stock: [],
+  jobs: [],
 };
 
 const jobSearchReducer = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const jobSearchReducer = (state = initialState, action) => {
     case GET_JOBS:
       return {
         ...state,
-        stock: action.payload,
+        jobs: action.payload,
       };
 
     default:

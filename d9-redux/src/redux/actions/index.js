@@ -10,36 +10,28 @@ export const GET_JOBS = "GET_JOBS";
 
 // this is a function returning an action
 // in Redux terminology, this is called an "action creator"
-export const addToFavesAction = (companySelected) => {
+export const addToFavesAction = (i) => {
   return {
     type: ADD_TO_FAVES,
-    payload: companySelected, // most of the times,
-    // you'll also need some data in your actions...
-    // that's a job for a property commonly called 'payload'
+    payload: i,
   };
 };
 
-export const removeFromCartAction = (i) => ({
+export const removeFromFavesAction = (i) => ({
   type: REMOVE_FROM_FAVES,
   payload: i,
 });
-// this is the same as before, just short-handed:
-// a function returning an object
 
-// addToCartAction(something) <-- this gives me the action!
-
-export const getJobsAction = () => {
+export const getJobsAction = (endPoint) => {
   return async (dispatch, getState) => {
     console.log("Fetching the jobs from the API...");
     try {
-      let resp = await fetch(
-        "https://strive-benchmark.herokuapp.com/api/jobs?search=developer&limit=20"
-      );
+      let resp = await fetch(endPoint);
       if (resp.ok) {
         let fetchedJobs = await resp.json();
         dispatch({
           type: GET_JOBS,
-          payload: fetchedJobs, // the reducer is just being given
+          payload: fetchedJobs.data, // the reducer is just being given
           // the final result, the array of books! so it cannot fail :)
         });
       } else {

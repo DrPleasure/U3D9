@@ -8,7 +8,7 @@ const CompanySearchResults = () => {
   const params = useParams();
 
   const baseEndpoint =
-    "https://strive-benchmark.herokuapp.com/api/jobs?company=";
+    "https://strive-benchmark.herokuapp.com/api/jobs?company=Olla";
 
   useEffect(() => {
     getJobs();
