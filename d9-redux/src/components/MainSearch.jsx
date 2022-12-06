@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Job from "./Job";
 import { getJobsAction } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { Store } from "redux";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
@@ -12,6 +13,9 @@ const MainSearch = () => {
   );
   const dispatch = useDispatch();
   let jobs = useSelector((state) => state.jobs.jobs);
+
+  const loadingData = useSelector((state) => state.jobs.isLoading);
+  const errorLoading = useSelector((state) => state.jobs.isError);
 
   const baseEndpoint =
     "https://strive-benchmark.herokuapp.com/api/jobs?search=";
@@ -34,6 +38,10 @@ const MainSearch = () => {
       <Row>
         <Col xs={10} className="mx-auto my-3">
           <h1>Remote Jobs Search Engine</h1>
+
+          {loadingData && (
+            <Spinner animation="border" variant="info" className="ml-2 mt-5" />
+          )}
           <Link to="/favourites">
             <Button variant="primary">Favorites</Button>{" "}
           </Link>

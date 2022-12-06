@@ -7,6 +7,8 @@
 export const ADD_TO_FAVES = "ADD_TO_FAVES";
 export const REMOVE_FROM_FAVES = "REMOVE_FROM_FAVES";
 export const GET_JOBS = "GET_JOBS";
+export const JOB_LOADING = "JOB_LOADING";
+export const LOADING_ERROR = "LOADING_ERROR";
 
 // this is a function returning an action
 // in Redux terminology, this is called an "action creator"
@@ -26,6 +28,12 @@ export const getJobsAction = (endPoint) => {
   return async (dispatch, getState) => {
     console.log("Fetching the jobs from the API...");
     try {
+      setTimeout(() => {
+        dispatch({
+          type: JOB_LOADING,
+          payload: true,
+        });
+      }, 100);
       let resp = await fetch(endPoint);
       if (resp.ok) {
         let fetchedJobs = await resp.json();
@@ -34,6 +42,12 @@ export const getJobsAction = (endPoint) => {
           payload: fetchedJobs.data, // the reducer is just being given
           // the final result, the array of books! so it cannot fail :)
         });
+        setTimeout(() => {
+          dispatch({
+            type: JOB_LOADING,
+            payload: false,
+          });
+        }, 100);
       } else {
         console.log("error");
       }
